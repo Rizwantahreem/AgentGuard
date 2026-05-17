@@ -10,7 +10,7 @@ from ..database import get_db
 from ..models import AgentSession, ConversationLog, SecurityEvent, Policy
 from ..schemas import DashboardMetrics, SecurityEventOut, ConversationLogOut, PolicyOut, PolicyCreate, TestRunRequest
 from ..services.lobster_trap import inspect_prompt, should_block, seed_policies
-from ..services.gemini import generate_response, get_agent_name
+from ..services.gemini import generate_response_via_lobstertrap, get_agent_name
 from ..services.cost import calculate_cost
 from ..data.test_prompts import get_test_prompts
 from .sse import broadcast_event
@@ -81,8 +81,13 @@ async def run_tests(req: TestRunRequest, db: Session = Depends(get_db)):
         tokens = 0
         cost = 0.0
         if not was_blocked:
-            response_text, tokens = await generate_response(req.agent_type, test["prompt"])
+            result = await generate_response_via_lobstertrap(req.agent_type, test["prompt"])
+            response_text = result["response_text"]
+            tokens = result["token_count"]
             cost = calculate_cost(tokens)
+            # Check if Lobster Trap blocked it
+            if result["blocked"]:
+                was_blocked = True
 
         actual = "blocked" if was_blocked else "safe"
         passed = actual == test["expected"]
