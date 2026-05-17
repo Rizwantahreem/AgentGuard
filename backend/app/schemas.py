@@ -99,3 +99,53 @@ class DashboardMetrics(BaseModel):
     violation_rate: float = 0.0
     recent_events: list[SecurityEventOut] = []
     recent_logs: list[ConversationLogOut] = []
+
+
+class UserRegister(BaseModel):
+    email: str
+    password: str
+    company_name: Optional[str] = None
+
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+
+class UserOut(BaseModel):
+    id: str
+    email: str
+    company_name: Optional[str]
+    plan: str
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class TokenOut(BaseModel):
+    token: str
+    user: UserOut
+
+
+class AgentRegister(BaseModel):
+    name: str
+    description: Optional[str] = None
+    policy_level: str = "moderate"
+
+
+class RegisteredAgentOut(BaseModel):
+    id: str
+    name: str
+    agent_type: str
+    description: Optional[str]
+    api_key: str
+    proxy_url: Optional[str]
+    policy_level: str
+    status: str
+    total_requests: int
+    blocked_requests: int
+    created_at: datetime
+
+    class Config:
+        from_attributes = True

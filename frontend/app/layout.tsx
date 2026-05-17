@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "AgentGuard - Enterprise Agent Control Center",
+  title: "Aegis — The AI Firewall",
   description:
-    "Real-time observability & security for AI agents. Built with Gemini & Lobster Trap.",
+    "Enterprise-grade security proxy for AI agents. Deep packet inspection, real-time threat detection, and compliance monitoring. Powered by Gemini & Lobster Trap.",
 };
 
 export default function RootLayout({

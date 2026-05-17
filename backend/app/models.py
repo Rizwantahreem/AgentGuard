@@ -64,3 +64,31 @@ class Policy(Base):
     category = Column(String(100), nullable=False)  # injection, pii, command, cost
     enabled = Column(Boolean, default=True)
     created_at = Column(DateTime, default=datetime.utcnow)
+
+
+class User(Base):
+    __tablename__ = "users"
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    email = Column(String(255), unique=True, nullable=False)
+    password_hash = Column(String(255), nullable=False)
+    company_name = Column(String(255), nullable=True)
+    plan = Column(String(50), default="starter")  # starter, pro, enterprise
+    created_at = Column(DateTime, default=datetime.utcnow)
+    agents = relationship("RegisteredAgent", back_populates="owner", cascade="all, delete-orphan")
+
+
+class RegisteredAgent(Base):
+    __tablename__ = "registered_agents"
+    id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
+    user_id = Column(String, ForeignKey("users.id"), nullable=False)
+    name = Column(String(255), nullable=False)
+    agent_type = Column(String(100), default="custom")
+    description = Column(Text, nullable=True)
+    api_key = Column(String(255), unique=True, nullable=False)  # aegis_sk_xxxxx
+    proxy_url = Column(String(500), nullable=True)
+    policy_level = Column(String(50), default="moderate")  # strict, moderate, permissive
+    status = Column(String(50), default="active")  # active, paused, disabled
+    total_requests = Column(Integer, default=0)
+    blocked_requests = Column(Integer, default=0)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    owner = relationship("User", back_populates="agents")

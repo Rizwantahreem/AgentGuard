@@ -9,6 +9,7 @@ import {
   ScrollText,
   FlaskConical,
   Bot,
+  PlusCircle,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -17,6 +18,7 @@ import { useState } from "react";
 const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/agents", label: "Agent Console", icon: Bot },
+  { href: "/agents/register", label: "Register Agent", icon: PlusCircle },
   { href: "/security", label: "Security Events", icon: Shield },
   { href: "/audit", label: "Audit Logs", icon: ScrollText },
   { href: "/tester", label: "Agent Tester", icon: FlaskConical },
@@ -36,11 +38,11 @@ export default function Sidebar() {
       {/* Logo */}
       <div className="flex items-center gap-2 px-4 py-5 border-b border-gray-800">
         <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 to-cyan-500 flex items-center justify-center text-sm font-black text-gray-950">
-          AG
+          AE
         </div>
         {!collapsed && (
           <span className="text-white font-bold text-lg tracking-tight">
-            AgentGuard
+            Aegis
           </span>
         )}
       </div>
