@@ -132,6 +132,7 @@ class AgentRegister(BaseModel):
     name: str
     description: Optional[str] = None
     policy_level: str = "moderate"
+    system_prompt: Optional[str] = None
 
 
 class RegisteredAgentOut(BaseModel):

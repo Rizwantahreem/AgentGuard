@@ -90,5 +90,6 @@ class RegisteredAgent(Base):
     status = Column(String(50), default="active")  # active, paused, disabled
     total_requests = Column(Integer, default=0)
     blocked_requests = Column(Integer, default=0)
+    system_prompt = Column(Text, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     owner = relationship("User", back_populates="agents")

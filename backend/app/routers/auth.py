@@ -34,7 +34,8 @@ def create_token(user_id: str) -> str:
 
 def get_current_user(authorization: str = Header(...), db: Session = Depends(get_db)) -> User:
     try:
-        decoded = base64.b64decode(authorization.encode()).decode()
+        token = authorization.removeprefix("Bearer ").strip()
+        decoded = base64.b64decode(token.encode()).decode()
         user_id = decoded.split(":")[0]
     except Exception:
         raise HTTPException(status_code=401, detail="Invalid token")

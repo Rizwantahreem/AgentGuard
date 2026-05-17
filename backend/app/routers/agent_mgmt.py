@@ -45,6 +45,7 @@ def register_agent(
         api_key=api_key,
         proxy_url=proxy_url,
         policy_level=data.policy_level,
+        system_prompt=data.system_prompt,
     )
     db.add(agent)
     db.commit()

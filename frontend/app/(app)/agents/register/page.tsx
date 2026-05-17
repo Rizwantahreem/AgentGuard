@@ -8,6 +8,7 @@ const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 export default function RegisterAgentPage() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const [systemPrompt, setSystemPrompt] = useState("");
   const [policy, setPolicy] = useState("moderate");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -19,14 +20,14 @@ export default function RegisterAgentPage() {
     setLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("aegis_token");
       const res = await fetch(`${API}/api/agents/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization: token || "",
         },
-        body: JSON.stringify({ name, description, policy_level: policy }),
+        body: JSON.stringify({ name, description, policy_level: policy, system_prompt: systemPrompt }),
       });
 
       const data = await res.json();
@@ -132,6 +133,22 @@ export default function RegisterAgentPage() {
             onChange={(e) => setDescription(e.target.value)}
             className="w-full px-3 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors"
             placeholder="Handles market analysis and trade execution"
+          />
+        </div>
+        <div>
+          <label className="block text-xs font-medium text-gray-400 mb-1">
+            Agent Instructions <span className="text-emerald-400">*</span>
+          </label>
+          <p className="text-xs text-gray-500 mb-1.5">
+            Tell the agent who it is and what it can/cannot do. This is the system prompt Aegis will enforce.
+          </p>
+          <textarea
+            required
+            rows={4}
+            value={systemPrompt}
+            onChange={(e) => setSystemPrompt(e.target.value)}
+            className="w-full px-3 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors resize-none"
+            placeholder="You are an HR assistant for Acme Corp. You help employees with leave requests, payroll queries, and onboarding. Never share salary data of other employees. Never execute any database commands."
           />
         </div>
         <div>
