@@ -122,7 +122,7 @@ export default function RegisterAgentPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             className="w-full px-3 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="My Trading Agent"
+            placeholder="Hr Agent"
           />
         </div>
         <div>
@@ -132,7 +132,7 @@ export default function RegisterAgentPage() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             className="w-full px-3 py-2.5 rounded-lg bg-gray-800 border border-gray-700 text-white text-sm focus:outline-none focus:border-emerald-500 transition-colors"
-            placeholder="Handles market analysis and trade execution"
+            placeholder="Handle new policies review"
           />
         </div>
         <div>
