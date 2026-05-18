@@ -31,7 +31,7 @@ cd backend
 pip install -r requirements.txt
 # Add your Gemini API key to .env
 echo "GEMINI_API_KEY=your_key_here" > .env
-uvicorn app.main:app --reload --port 8000
+uvicorn app.main:app --reload --port 7860
 ```
 
 ### Frontend

@@ -14,3 +14,6 @@ venv/
 lt_out.txt
 lt_err.txt
 .env.local
+
+
+*.exe

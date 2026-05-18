@@ -44,7 +44,7 @@ stderr_logfile=/dev/stderr
 stderr_logfile_maxbytes=0
 
 [program:fastapi]
-command=bash -c "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8000}"
+command=bash -c "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-7860}"
 directory=/app
 autostart=true
 autorestart=true
@@ -54,6 +54,6 @@ stderr_logfile=/dev/stderr
 stderr_logfile_maxbytes=0
 EOF
 
-EXPOSE 8000
+EXPOSE 7860
 
 CMD ["supervisord", "-c", "/etc/supervisord.conf"]
