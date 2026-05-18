@@ -1,4 +1,4 @@
-# AgentGuard: Enterprise Agent Control Center
+# Aegis: Enterprise Agent Control Center
 
 > **The Trust Layer Enterprise Security Teams Actually Sign Off On**
 
