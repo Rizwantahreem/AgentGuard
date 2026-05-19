@@ -4,6 +4,7 @@
 
 Real-time observability & security for AI agents. Built with Google Gemini & Veea Lobster Trap concepts for the [TechEx Intelligent Enterprise Solutions Hackathon](https://lablab.ai/ai-hackathons/techex-intelligent-enterprise-solutions-hackathon).
 
+live - https://aegis-vert.vercel.app/ 
 ## Features
 
 - **Zero Trust Agent Execution** - Every agent interaction passes through policy enforcement before reaching production systems
@@ -17,11 +18,11 @@ Real-time observability & security for AI agents. Built with Google Gemini & Vee
 | Layer | Technology |
 |-------|-----------|
 | **AI Engine** | Google Gemini 2.0 Flash |
-| **Policy Engine** | Lobster Trap (simulated) |
+| **Policy Engine** | Lobster Trap |
 | **Backend** | Python FastAPI + SQLAlchemy + SQLite |
 | **Frontend** | Next.js 14 + Tailwind CSS + Recharts |
 | **Real-time** | Server-Sent Events (SSE) |
-| **Deployment** | Vercel (frontend) + Render (backend) |
+| **Deployment** | Vercel (frontend) + Hugging face (backend) |
 
 ## Quick Start
 
